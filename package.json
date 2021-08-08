@@ -1,6 +1,6 @@
 {
   "name": "scss-to-tailwindcss",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "author": "Jordi Marimon Palarea",
   "description": "Converts a SCSS configuration file to a TailwindCSS theme object",
   "main": "dist/index.cjs.js",
