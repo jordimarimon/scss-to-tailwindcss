@@ -5,7 +5,7 @@ import { existsSync, readFileSync } from 'fs';
 import { stripOuter } from './strip-outer';
 import postcssScss from 'postcss-scss';
 import { camelize } from './camelize';
-import sass from 'sass';
+import * as sass from 'sass';
 
 
 /**
@@ -55,9 +55,14 @@ export function parse(path: string): { [key: string]: any } {
     secondRoot.walkRules('.__sassVars__', (rule: Rule) => {
         rule.walkDecls('content', (decl: Declaration) => {
             const [property, value] = decl.value.split(' ":" ');
-            const propInCamelCase = camelize(stripOuter(property, '"').slice(1));
 
-            result[propInCamelCase] = JSON.parse(stripOuter(value, "'"));
+            let transformedKey = stripOuter(property, '"').slice(1);
+
+            if (transformedKey.includes('-')) {
+                transformedKey = camelize(transformedKey);
+            }
+
+            result[transformedKey] = JSON.parse(stripOuter(value, "'"));
         });
     });
 

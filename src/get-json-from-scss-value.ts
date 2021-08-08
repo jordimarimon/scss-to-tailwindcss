@@ -1,5 +1,6 @@
 import { stripOuter } from './strip-outer';
-import sass from 'sass';
+import { camelize } from './camelize';
+import * as sass from 'sass';
 
 /**
  * Converts a SCSS List to a JS Array
@@ -35,7 +36,13 @@ function mapToObject(map: sass.types.Map) {
     for (const index of Array.from({ length }).keys()) {
         const key = map.getKey(index).toString();
 
-        data[stripOuter(key, '"')] = getJsonValueFromSassValue(map.getValue(index));
+        let transformedKey = stripOuter(key, '"');
+
+        if (transformedKey.includes('-')) {
+            transformedKey = camelize(transformedKey);
+        }
+
+        data[transformedKey] = getJsonValueFromSassValue(map.getValue(index));
     }
 
     return data;
@@ -67,9 +74,9 @@ function getJsonValueFromSassValue(value: unknown): any {
         }
     } else if (value instanceof sass.types.Number) {
         if (value.getUnit() !== '') {
-            resolvedValue = String(Math.round(Number(value.getValue())) + value.getUnit());
+            resolvedValue = String(Number(value.getValue()) + value.getUnit());
         } else {
-            resolvedValue = Math.round(Number(value.getValue()));
+            resolvedValue = Number(value.getValue());
         }
     } else if (value instanceof sass.types.String) {
         resolvedValue = value.getValue();
