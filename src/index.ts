@@ -18,7 +18,7 @@ import sass from 'sass';
  *
  * @returns A JSON with all the SCSS variables in "lowerCamelCase"
  */
-export function parse(path: string): { [key: string]: string | number } {
+export function parse(path: string): { [key: string]: any } {
     if (!existsSync(path)) {
         throw new Error(`The file doesn't exist: "${path}"`);
     }
