@@ -1,3 +1,12 @@
+## [1.0.2](https://github.com/jordimarimon/scss-to-tailwindcss/compare/1.0.1...1.0.2) (2021-08-08)
+
+
+### Bug Fixes
+
+* Don't round SCSS numbers ([c10f170](https://github.com/jordimarimon/scss-to-tailwindcss/commit/c10f17096f56e4c31ce0da333e914515efd23b50))
+
+
+
 ## [1.0.1](https://github.com/jordimarimon/scss-to-tailwindcss/compare/1.0.0...1.0.1) (2021-08-08)
 
 
