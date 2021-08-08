@@ -1,8 +1,8 @@
 const {parse} = require('../dist/index.cjs.js');
 const {join} = require('path');
 
-test('parse', async () => {
-    const result = await parse(join(__dirname, '_config.scss'));
+test('parse', () => {
+    const result = parse(join(__dirname, '_config.scss'));
     const expected = {
         screens: {
             xs: '30em',
