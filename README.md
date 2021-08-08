@@ -22,9 +22,13 @@ The limitation this library tries to solve when using [tailwindcss](https://tail
 
 ## How to use it
 
-First define your theme properties in a SCSS file. The names of the SCSS variables need to be 
-the same as the names you would put in the `tailwind.config.js` but in _kebab-case_ (the names will 
-be transformed to _lowerCamelCase_):
+First define your theme properties in a SCSS file. 
+
+The names of the SCSS variables need to be the same as the names you would put in 
+the `tailwind.config.js` but in _kebab-case_ (the names will be transformed to _lowerCamelCase_).
+
+Also, the properties that need to extend the `tailwindcss` default theme, should be defined inside a
+SCSS/SASS map named `$extend`.
 
 ```scss
 ///////////////////////////////////////////////////////////////////////////////
