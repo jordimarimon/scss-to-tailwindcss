@@ -1,3 +1,12 @@
+## [1.0.1](https://github.com/jordimarimon/scss-to-tailwindcss/compare/1.0.0...1.0.1) (2021-08-08)
+
+
+### Bug Fixes
+
+* Returning type and don't remove comments ([2a057fd](https://github.com/jordimarimon/scss-to-tailwindcss/commit/2a057fd7bbd64446b0e3b10e71106c2023a3f8b3))
+
+
+
 # [1.0.0](https://github.com/jordimarimon/scss-to-tailwindcss/compare/7994d1082b347a913351c7956620c5007ca0ae9b...1.0.0) (2021-08-08)
 
 
