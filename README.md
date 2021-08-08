@@ -6,9 +6,7 @@ This can then be used for the [tailwindcss](https://tailwindcss.com/) theme conf
 
 This way you can use all the power of SASS/SCSS with [tailwindcss](https://tailwindcss.com/) and keep one source of truth.
 
-Documentation about the limitation this library tries to solve when using [tailwindcss](https://tailwindcss.com/) with SASS/SCSS:
-
-[Tailwindcss documentation about it](https://tailwindcss.com/docs/using-with-preprocessors#using-sass-less-or-stylus)
+The limitation this library tries to solve when using [tailwindcss](https://tailwindcss.com/) with SASS/SCSS: [Tailwindcss documentation about it](https://tailwindcss.com/docs/using-with-preprocessors#using-sass-less-or-stylus)
 
 #### Especial thanks to the following libraries that I have copied code from it:
 
@@ -312,7 +310,9 @@ Now, when you need to access a theme configuration property, you have three ways
 
 * **With SCSS/SASS**:
 
-First you can define the following functions to simplify the work:
+First you can define the following functions to simplify the work for retrieving your theme configuration with SASS/SCSS:
+
+**NOTE: The following functions are not robust, you should add some extra checks.**
 
 ```scss
 
@@ -323,7 +323,7 @@ First you can define the following functions to simplify the work:
 @use "sass:meta";
 @use "sass:map";
 
-@use "<path-to-config>/config";
+@use "<path-to-config>/theme";
 
 @function str-split($string, $separator) {
   // empty array/list
@@ -352,7 +352,7 @@ First you can define the following functions to simplify the work:
 
 @function theme-scss($prop) {
   // Retrieve the theme options
-  $options: meta.module-variables(config);
+  $options: meta.module-variables(theme);
   
   // Split the string
   $keys: str-split($prop, ".");
@@ -376,7 +376,7 @@ First you can define the following functions to simplify the work:
   color: utils.theme-scss("colors.white");
   
   // Now you can use all the power of SASS/SCSS with tailwindcss!
-  background-color: darken(utils.theme-scss("colors.primary.500"));
+  background-color: darken(utils.theme-scss("colors.primary.500"), 10%);
 }
 
 ```
