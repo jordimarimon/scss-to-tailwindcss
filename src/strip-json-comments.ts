@@ -2,7 +2,7 @@ const singleComment = Symbol('singleComment');
 const multiComment = Symbol('multiComment');
 
 /**
- *
+ * https://github.com/sindresorhus/strip-json-comments
  *
  * @param jsonString
  * @param quotePosition
@@ -21,7 +21,7 @@ const isEscaped = (jsonString: string, quotePosition: number): boolean => {
 
 
 /**
- *
+ * https://github.com/sindresorhus/strip-json-comments
  *
  * @param jsonString
  */

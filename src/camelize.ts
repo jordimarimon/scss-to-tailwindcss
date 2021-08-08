@@ -1,7 +1,9 @@
 /**
+ * Converts a kebab-case word to lowerCamelCase.
  *
+ * @param str - The kebab-case word
  *
- * @param str
+ * @returns The lowerCamelCase word
  */
 export function camelize(str: string): string {
     return str.split('-').map((item, index) => {

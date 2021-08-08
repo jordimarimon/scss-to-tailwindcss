@@ -12,9 +12,11 @@ import sass from 'sass';
  * Parses a SCSS file and extracts all of it's SCSS variables.
  * Expects the SCSS variable to be in kebab-case.
  *
+ * https://github.com/niksy/get-sass-vars
+ *
  * @param path - The path of the SCSS file
  *
- * @return A JSON with all the SCSS variables in "lowerCamelCase"
+ * @returns A JSON with all the SCSS variables in "lowerCamelCase"
  */
 export async function parse(path: string): Promise<{ [key: string]: string | number }> {
     if (!existsSync(path)) {

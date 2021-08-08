@@ -2,6 +2,8 @@ import { stripOuter } from './strip-outer';
 import sass from 'sass';
 
 /**
+ * Converts a SCSS List to a JS Array
+ *
  * @param {sass.types.List} list
  *
  * @returns {Array}
@@ -20,6 +22,8 @@ function listToArray(list: sass.types.List) {
 }
 
 /**
+ * Converts a SCSS Map to a JS Object
+ *
  * @param {sass.types.Map} map
  *
  * @returns {object}
@@ -39,6 +43,8 @@ function mapToObject(map: sass.types.Map) {
 
 
 /**
+ * Converts a SCSS data structure to JSON
+ *
  * @param {sass.types.*} value
  *
  * @returns {*}
@@ -75,9 +81,12 @@ function getJsonValueFromSassValue(value: unknown): any {
 }
 
 /**
- *
+ * Converts a SCSS data structure to JSON and returns the SCSS string representation of it.
+ * https://github.com/niksy/node-sass-json-functions
  *
  * @param value
+ *
+ * @returns {sass.types.String}
  */
 export function encode(value: unknown): sass.types.String {
     return new sass.types.String(`'${JSON.stringify(getJsonValueFromSassValue(value))}'`);

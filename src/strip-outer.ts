@@ -1,5 +1,6 @@
 /**
- *
+ * https://github.com/sindresorhus/strip-outer
+ * https://github.com/sindresorhus/escape-string-regexp
  *
  * @param input
  * @param substring
