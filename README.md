@@ -380,3 +380,11 @@ First you can define the following functions to simplify the work for retrieving
 }
 
 ```
+
+## CONTRIBUTING
+
+Check out [CONTRIBUTING.md](CONTRIBUTING.md)
+
+## License
+
+See the [LICENSE](LICENSE.md) file for license rights and limitations (MIT).

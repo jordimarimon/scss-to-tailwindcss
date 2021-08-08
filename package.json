@@ -3,10 +3,27 @@
   "version": "1.0.0",
   "author": "Jordi Marimon Palarea",
   "description": "Converts a SCSS configuration file to a TailwindCSS theme object",
+  "license": "MIT",
+  "sideEffects": false,
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "homepage": "https://github.com/jordimarimon/scss-to-tailwindcss#readme",
+  "files": [
+    "dist/",
+    "CHANGELOG.md",
+    "LICENSE.md",
+    "README.md"
+  ],
+  "keywords": [
+    "export",
+    "get",
+    "json",
+    "sass",
+    "variables",
+    "vars",
+    "node"
+  ],
   "bugs": {
     "url": "https://github.com/jordimarimon/scss-to-tailwindcss/issues"
   },
