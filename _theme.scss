@@ -1,0 +1,53 @@
+@use "sass:string";
+@use "sass:meta";
+@use "sass:list";
+@use "sass:map";
+
+@use "utils";
+
+$_config: ();
+
+/**
+ * Sets the global theme configuration.
+ */
+@mixin set($options) {
+  // Retrieve the theme options
+  $_config: meta.module-variables($options) !global;
+}
+
+/**
+ * Returns the theme property requested
+ */
+@function get($prop) {
+  @if (list.length(map.keys($_config)) == 0) {
+     @error "No configuration has been defined. Did you forget to call `theme.set(<config>)`?";
+  }
+
+  @if ($prop == null or string.length($prop) == 0 or string.index($prop, ".") == null) {
+    @error "Invalid property provided: #{$prop}";
+  }
+
+  // Split the string
+  $keys: utils.str-split($prop, ".");
+
+  // Loop through each key
+  $result: $_config;
+
+  @each $key in $keys {
+    @if (map.has-key($result, $key)) {
+      $result: map.get($result, $key);
+    } @else {
+      // Sometimes the user writes the keys in SCSS as numbers
+      // and we get false negatives (key does really exist).
+      $parsed-key: utils.to-number($key);
+
+      @if (map.has-key($result, $parsed-key)) {
+        $result: map.get($result, $parsed-key);
+      } @else {
+        @error "Property not found in configuration: #{$prop}";
+      }
+    }
+  }
+
+  @return $result;
+}

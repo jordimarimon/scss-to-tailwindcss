@@ -6,7 +6,20 @@ This can then be used for the [tailwindcss](https://tailwindcss.com/) theme conf
 
 This way you can use all the power of SASS/SCSS with [tailwindcss](https://tailwindcss.com/) and keep one source of truth.
 
-The limitation this library tries to solve when using [tailwindcss](https://tailwindcss.com/) with SASS/SCSS: [Tailwindcss documentation about it](https://tailwindcss.com/docs/using-with-preprocessors#using-sass-less-or-stylus)
+One of the limitations of using SASS/SCSS with tailwindcss is that you can't use SASS functions/mixins with
+your theme configuration. For example, the following won't compile:
+
+```scss
+.alert {
+  // Won't work, Sass is processed first
+  background-color: darken(theme("colors.red.500"), 10%);
+}
+```
+
+This library tries to solve this limitation by providing a way to write your tailwindcss theme configuration
+in SASS/SCSS instead of using JS.
+
+This way, because your theme configuration is written in SASS/SCSS, you can use all the power of SASS without any limitation.
 
 #### Especial thanks to the following libraries that I have copied code from it:
 
@@ -16,21 +29,27 @@ The limitation this library tries to solve when using [tailwindcss](https://tail
 * https://github.com/niksy/node-sass-json-functions
 * https://github.com/niksy/get-sass-vars
 
-## Install
+## Installation
 
     npm i -D scss-to-tailwindcss
 
-## How to use it
+## Usage
 
 First define your theme properties in a SCSS file. 
 
 The names of the SCSS variables need to be the same as the names you would put in 
-the `tailwind.config.js` but in _kebab-case_ (the names will be transformed to _lowerCamelCase_).
+the `tailwind.config.js`. You can use _kebab-case_ or _lowerCamelCase_.
 
-Also, the properties that need to extend the `tailwindcss` default theme, should be defined inside a
+The properties that need to extend the `tailwindcss` default theme, should be defined inside a
 SCSS/SASS map named `$extend`.
 
 ```scss
+
+// The default tailwindcss theme configuration based on:
+// https://github.com/tailwindlabs/tailwindcss/blob/master/stubs/defaultConfig.stub.js#L7
+// This way you can access all the theme configuration from SASS even if you don't override it.
+@forward "~scss-to-tailwindcss/default";
+
 ///////////////////////////////////////////////////////////////////////////////
 //////////////////////// RESPONSIVENESS
 ///////////////////////////////////////////////////////////////////////////////
@@ -161,12 +180,31 @@ $colors: (
   ),
 );
 
+///////////////////////////////////////////////////////////////////////////////
+//////////////////////// EXTEND
+///////////////////////////////////////////////////////////////////////////////
+
+$extend: (
+  grid-template-columns: (
+    auto: repeat(auto-fill, minmax(var(--size), 1fr)),
+  ),
+
+  grid-template-rows: (
+    auto: repeat(auto-fill, minmax(var(--size), 1fr)),
+  ),
+);
+
 ```
 
 The above SCSS file will be converted to:
 
 ```
 {
+
+  // ...
+  // ... default configuration that you haven't override ...
+  // ...
+
   screens: {
     xs: '30em',
     sm: '40em',
@@ -270,6 +308,14 @@ The above SCSS file will be converted to:
       '800': 'rgb(26,26,26)'
     }
   }
+  extend: {
+    gridTemplateColumns: {
+      auto: 'repeat(auto-fill, minmax(var(--size), 1fr))'
+    },
+    gridTemplateRows: {
+      auto: 'repeat(auto-fill, minmax(var(--size), 1fr))'
+    }
+  }
 }
 ```
 
@@ -284,7 +330,7 @@ module.exports = {
     theme: {
         // Imagine you have defined your theme configuration in the same place 
         // where `tailwind.config.js` is located
-        ...parse(join(__dirname, '_theme.scss')),
+        ...parse(join(__dirname, '_basic-config.scss')),
     },  
 };
 ```
@@ -313,79 +359,49 @@ Now, when you need to access a theme configuration property, you have three ways
 ```
 
 * **With SCSS/SASS**:
-
-First you can define the following functions to simplify the work for retrieving your theme configuration with SASS/SCSS:
-
-**NOTE: The following functions are not robust, you should add some extra checks.**
+  
+In your SASS main entry point make sure to add the following lines before any styles:
 
 ```scss
 
-// _utils.scss
+@use "<path-to-your-config-file>/config";
+@use "~scss-to-tailwindcss/theme";
 
-@use "sass:string";
-@use "sass:list";
-@use "sass:meta";
-@use "sass:map";
+// Will define a global variable with all your configuration
+@include theme.set(config);
 
-@use "<path-to-config>/theme";
-
-@function str-split($string, $separator) {
-  // empty array/list
-  $split-arr: ();
-  
-  // first index of separator in string
-  $index : string.index($string, $separator);
-  
-  // loop through string
-  @while ($index != null) {
-    // get the substring from the first character to the separator
-    $item: string.slice($string, 1, $index - 1);
-    // push item to array
-    $split-arr: list.append($split-arr, $item);
-    // remove item and separator from string
-    $string: string.slice($string, $index + 1);
-    // find new index of separator
-    $index : string.index($string, $separator);
-  }
-  
-  // add the remaining string to list (the last item)
-  $split-arr: list.append($split-arr, $string);
-
-  @return $split-arr;
-}
-
-@function theme-scss($prop) {
-  // Retrieve the theme options
-  $options: meta.module-variables(theme);
-  
-  // Split the string
-  $keys: str-split($prop, ".");
-  
-  // Loop through each key
-  $result: $options;
-  @each $key in $keys {
-    $result: map.get($result, $key);
-  }
-
-  @return $result;
-}
 ```
 
+Now you can use some utility functions that have been written to make it easier to access your theme configuration from SASS:
+
 ```scss
 
-@use "<path-to-above-functions>/utils";
+@use "~scss-to-tailwindcss/spacing";
+@use "~scss-to-tailwindcss/theme";
+@use "~scss-to-tailwindcss/color";
 
 .test-class {
-  font-size: utils.theme-scss("font-size.base");
-  color: utils.theme-scss("colors.white");
+  font-size: theme.get("font-size.base");
+  color: theme.get("colors.white");
   
   // Now you can use all the power of SASS/SCSS with tailwindcss!
-  background-color: darken(utils.theme-scss("colors.primary.500"), 10%);
+  background-color: darken(theme.get("colors.primary.700"), 10%);
+}
+
+.test-class2 {
+  // You can use your spacing with "em" units if you want to.
+  padding: spacing.em(4); // -> "1em"
+}
+
+.test-class3 {
+  // You can request a color with an opacity.
+  // The following will give you your default primary color with an opacity of 0.4
+  color: color.get("primary.DEFAULT", 40);
 }
 
 ```
 
-## CONTRIBUTING
+## Contributing
 
 Check out [CONTRIBUTING.md](CONTRIBUTING.md)
 

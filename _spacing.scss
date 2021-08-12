@@ -1,0 +1,14 @@
+@use "theme";
+@use "utils";
+
+/**
+ * Returns the spacing in "em" units.
+ *
+ * TailwindCSS only offers spacing in "rem"/"px" units and sometimes
+ * is better to use "em".
+ *
+ * @param $step - The key in the spacing map in the tailwindcss config.
+ */
+@function em($step) {
+  @return #{utils.strip-unit(theme.get("spacing.#{$step}"))}em;
+}

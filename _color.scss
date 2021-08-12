@@ -1,0 +1,18 @@
+@use "sass:string";
+@use "sass:color";
+
+@use "theme";
+
+/**
+ * Returns the color with the opacity applied.
+ */
+@function get($color, $opacity) {
+  $_color: theme.get("colors.#{$color}");
+  $_opacity: theme.get("opacity.#{$opacity}");
+
+  $hue: color.hue($_color);
+  $saturation: color.saturation($_color);
+  $lightness: color.lightness($_color);
+
+  @return string.unquote('hsla(#{$hue}, #{$saturation}, #{$lightness}, #{$_opacity})');
+}
