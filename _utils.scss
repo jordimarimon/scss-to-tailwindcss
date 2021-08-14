@@ -96,3 +96,23 @@
 
   @return $result;
 }
+
+/**
+ * Escapes the characters "/", ":", "." in the given string
+ *
+ * https://www.w3.org/TR/CSS21/syndata.html#characters
+ */
+@function escape($string) {
+  $result: $string;
+  $special-chars: ("/", ":", ".");
+
+  @each $char in $special-chars {
+    $index: string.index($result, $char);
+
+    @if ($index != null) {
+      $result: string.insert($result, "\\", $index);
+    }
+  }
+
+  @return $result;
+}

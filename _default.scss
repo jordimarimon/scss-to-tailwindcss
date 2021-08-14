@@ -589,23 +589,25 @@ $transformOrigin: (
   top-left: "top left",
 );
 
-$translate: (
-  "1/2": 50%,
-  "1/3": 33.333333%,
-  "2/3": 66.666667%,
-  "1/4": 25%,
-  "2/4": 50%,
-  "3/4": 75%,
-  full: 100%,
-  "-1/2": -50%,
-  "-1/3": -33.333333%,
-  "-2/3": -66.666667%,
-  "-1/4": -25%,
-  "-2/4": -50%,
-  "-3/4": -75%,
-  "-full": -100%,
+$translate: map.merge(
+    map.merge(utils.negative($spacing), $spacing),
+    (
+      "1/2": 50%,
+      "1/3": 33.333333%,
+      "2/3": 66.666667%,
+      "1/4": 25%,
+      "2/4": 50%,
+      "3/4": 75%,
+      full: 100%,
+      "-1/2": -50%,
+      "-1/3": -33.333333%,
+      "-2/3": -66.666667%,
+      "-1/4": -25%,
+      "-2/4": -50%,
+      "-3/4": -75%,
+      "-full": -100%,
+    ),
 );
-$translate: map.merge(utils.negative($spacing), map.merge($spacing, $translate));
 
 $rotate: (
   '-180': -180deg,
@@ -904,19 +906,19 @@ $gridAutoRows: (
 
 $gridColumn: (
   auto: auto,
-  "span-1": "span 1 / span 1",
-  "span-2": "span 2 / span 2",
-  "span-3": "span 3 / span 3",
-  "span-4": "span 4 / span 4",
-  "span-5": "span 5 / span 5",
-  "span-6": "span 6 / span 6",
-  "span-7": "span 7 / span 7",
-  "span-8": "span 8 / span 8",
-  "span-9": "span 9 / span 9",
-  "span-10": "span 10 / span 10",
-  "span-11": "span 11 / span 11",
-  "span-12": "span 12 / span 12",
-  "span-full": "1 / -1",
+  span-1: "span 1 / span 1",
+  span-2: "span 2 / span 2",
+  span-3: "span 3 / span 3",
+  span-4: "span 4 / span 4",
+  span-5: "span 5 / span 5",
+  span-6: "span 6 / span 6",
+  span-7: "span 7 / span 7",
+  span-8: "span 8 / span 8",
+  span-9: "span 9 / span 9",
+  span-10: "span 10 / span 10",
+  span-11: "span 11 / span 11",
+  span-12: "span 12 / span 12",
+  span-full: "1 / -1",
 );
 
 $gridColumnEnd: (
@@ -955,13 +957,13 @@ $gridColumnStart: (
 
 $gridRow: (
   auto: auto,
-  "span-1": "span 1 / span 1",
-  "span-2": "span 2 / span 2",
-  "span-3": "span 3 / span 3",
-  "span-4": "span 4 / span 4",
-  "span-5": "span 5 / span 5",
-  "span-6": "span 6 / span 6",
-  "span-full": "1 / -1",
+  span-1: "span 1 / span 1",
+  span-2: "span 2 / span 2",
+  span-3: "span 3 / span 3",
+  span-4: "span 4 / span 4",
+  span-5: "span 5 / span 5",
+  span-6: "span 6 / span 6",
+  span-full: "1 / -1",
 );
 
 $gridRowStart: (
