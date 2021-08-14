@@ -3,34 +3,28 @@
 @use "sass:list";
 @use "sass:map";
 
+@use "default";
 @use "utils";
 
-$_config: ();
+$_config: meta.module-variables(default);
 
 /**
- * Sets the global theme configuration.
+ * Merges the developer theme configuration with the default.
  */
 @mixin set($options) {
-  // Retrieve the theme options
-  $_config: meta.module-variables($options) !global;
+  $_config: map.merge(meta.module-variables($options), $_config) !global;
 }
 
 /**
  * Returns the theme property requested
  */
 @function get($prop) {
-  @if (list.length(map.keys($_config)) == 0) {
-     @error "No configuration has been defined. Did you forget to call `theme.set(<config>)`?";
-  }
-
-  @if ($prop == null or string.length($prop) == 0 or string.index($prop, ".") == null) {
+  @if ($prop == null or string.length($prop) == 0) {
     @error "Invalid property provided: #{$prop}";
   }
 
-  // Split the string
   $keys: utils.str-split($prop, ".");
 
-  // Loop through each key
   $result: $_config;
 
   @each $key in $keys {

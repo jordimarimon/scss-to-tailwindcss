@@ -1,12 +1,10 @@
 # scss-to-tailwindcss
 
-This library converts SASS/SCSS variables to JSON. 
+This library converts SASS variables to JSON.
 
-This can then be used for the [tailwindcss](https://tailwindcss.com/) theme configuration.
+You may be asking why this is needed?  
 
-This way you can use all the power of SASS/SCSS with [tailwindcss](https://tailwindcss.com/) and keep one source of truth.
-
-One of the limitations of using SASS/SCSS with tailwindcss is that you can't use SASS functions/mixins with
+One of the limitations of using SASS with [tailwindcss](https://tailwindcss.com/) is that you can't use SASS functions/mixins with
 your theme configuration. For example, the following won't compile:
 
 ```scss
@@ -16,12 +14,15 @@ your theme configuration. For example, the following won't compile:
 }
 ```
 
-This library tries to solve this limitation by providing a way to write your tailwindcss theme configuration
-in SASS/SCSS instead of using JS.
+This library tries to solve this limitation by providing a way to write your [tailwindcss](https://tailwindcss.com/) 
+theme configuration in SASS.
 
-This way, because your theme configuration is written in SASS/SCSS, you can use all the power of SASS without any limitation.
+Because your theme configuration is written in SASS, you can use all the power of it without any limitation.
 
-#### Especial thanks to the following libraries that I have copied code from it:
+You still can use all the power of [tailwindcss](https://tailwindcss.com/) while keeping one source of truth for your
+theme configuration.
+
+#### Especial thanks to the following libraries that I have used code from it:
 
 * https://github.com/sindresorhus/escape-string-regexp
 * https://github.com/sindresorhus/strip-outer
@@ -35,20 +36,18 @@ This way, because your theme configuration is written in SASS/SCSS, you can use 
 
 ## Usage
 
-First define your theme properties in a SCSS file. 
+You need to define your theme options in a SASS file. 
 
-The names of the SCSS variables need to be the same as the names you would put in 
-the `tailwind.config.js`. You can use _kebab-case_ or _lowerCamelCase_.
+The names of the SASS variables need to be the same as the names you would set in 
+the `tailwind.config.js` file. 
 
-The properties that need to extend the `tailwindcss` default theme, should be defined inside a
-SCSS/SASS map named `$extend`.
+You can use _kebab-case_ or _lowerCamelCase_.
+
+The properties that need to extend the `tailwindcss` default theme, should be defined inside a SASS map named `$extend`.
+
+An exemple of a theme configuration:
 
 ```scss
-
-// The default tailwindcss theme configuration based on:
-// https://github.com/tailwindlabs/tailwindcss/blob/master/stubs/defaultConfig.stub.js#L7
-// This way you can access all the theme configuration from SASS even if you don't override it.
-@forward "~scss-to-tailwindcss/default";
 
 ///////////////////////////////////////////////////////////////////////////////
 //////////////////////// RESPONSIVENESS
@@ -196,15 +195,10 @@ $extend: (
 
 ```
 
-The above SCSS file will be converted to:
+The above SASS file will be translated to:
 
 ```
 {
-
-  // ...
-  // ... default configuration that you haven't override ...
-  // ...
-
   screens: {
     xs: '30em',
     sm: '40em',
@@ -330,7 +324,7 @@ module.exports = {
     theme: {
         // Imagine you have defined your theme configuration in the same place 
         // where `tailwind.config.js` is located
-        ...parse(join(__dirname, '_basic-config.scss')),
+        ...parse(join(__dirname, '_config.scss')),
     },  
 };
 ```
@@ -358,21 +352,21 @@ Now, when you need to access a theme configuration property, you have three ways
 
 ```
 
-* **With SCSS/SASS**:
+* **Using SASS**:
   
-In your SASS main entry point make sure to add the following lines before any styles:
+In your SASS main entry point add the following lines before any styles:
 
 ```scss
 
 @use "<path-to-your-config-file>/config";
 @use "~scss-to-tailwindcss/theme";
 
-// Will define a global variable with all your configuration
 @include theme.set(config);
 
 ```
 
-Now you can use some utility functions that have been written to make it easier to access your theme configuration from SASS:
+Now you can use some utility functions that have been written to make it easier to access 
+your theme configuration from SASS:
 
 ```scss
 
@@ -384,12 +378,12 @@ Now you can use some utility functions that have been written to make it easier 
   font-size: theme.get("font-size.base");
   color: theme.get("colors.white");
   
-  // Now you can use all the power of SASS/SCSS with tailwindcss!
+  // Now you can use all the power of SASS with tailwindcss!
   background-color: darken(theme.get("colors.primary.700"), 10%);
 }
 
 .test-class2 {
-  // You can use your spacing with "em" units if you want to.
+  // You can use the spacing configuration with "em" units if you need to.
   padding: spacing.em(4); // -> "1em"
 }
 

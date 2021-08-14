@@ -1,6 +1,6 @@
 import postcss, { Root, Declaration, Rule, LazyResult } from 'postcss';
 import { stripJsonComments } from './strip-json-comments';
-import { encode } from './get-json-from-scss-value';
+import { encode } from './get-json-from-sass-value';
 import { existsSync, readFileSync } from 'fs';
 import { stripOuter } from './strip-outer';
 import postcssScss from 'postcss-scss';
@@ -9,14 +9,13 @@ import * as sass from 'sass';
 
 
 /**
- * Parses a SCSS file and extracts all of it's SCSS variables.
- * Expects the SCSS variable to be in kebab-case.
+ * Parses a SASS file and extracts all of it's SASS variables.
  *
  * https://github.com/niksy/get-sass-vars
  *
- * @param path - The path of the SCSS file
+ * @param path - The path of the SASS file
  *
- * @returns A JSON with all the SCSS variables in "lowerCamelCase"
+ * @returns A JSON with all the SASS variables in "lowerCamelCase"
  */
 export function parse(path: string): { [key: string]: any } {
     if (!existsSync(path)) {

@@ -83,3 +83,16 @@
 
   @return $split-arr;
 }
+
+/**
+ * Converts the map to negative values
+ */
+@function negative($map) {
+  $result: ();
+
+  @each $key, $value in $map {
+    $result: map.merge(("-#{$key}": -#{$value}), $result);
+  }
+
+  @return $result;
+}

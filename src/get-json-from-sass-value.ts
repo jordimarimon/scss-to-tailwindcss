@@ -3,7 +3,7 @@ import { camelize } from './camelize';
 import * as sass from 'sass';
 
 /**
- * Converts a SCSS List to a JS Array
+ * Converts a SASS List to a JS Array
  *
  * @param {sass.types.List} list
  *
@@ -23,7 +23,7 @@ function listToArray(list: sass.types.List) {
 }
 
 /**
- * Converts a SCSS Map to a JS Object
+ * Converts a SASS Map to a JS Object
  *
  * @param {sass.types.Map} map
  *
@@ -50,7 +50,7 @@ function mapToObject(map: sass.types.Map) {
 
 
 /**
- * Converts a SCSS data structure to JSON
+ * Converts a SASS data structure to JSON
  *
  * @param {sass.types.*} value
  *
@@ -88,7 +88,8 @@ function getJsonValueFromSassValue(value: unknown): any {
 }
 
 /**
- * Converts a SCSS data structure to JSON and returns the SCSS string representation of it.
+ * Converts a SASS data structure to JSON and returns the SASS string representation of it.
+ *
  * https://github.com/niksy/node-sass-json-functions
  *
  * @param value
