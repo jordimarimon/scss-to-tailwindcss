@@ -57,7 +57,7 @@ export function parse(path: string): { [key: string]: any } {
 
             let transformedKey = stripOuter(property, '"').slice(1);
 
-            if (transformedKey.includes('-')) {
+            if (transformedKey.indexOf('-') > 0) {
                 transformedKey = camelize(transformedKey);
             }
 
@@ -67,3 +67,4 @@ export function parse(path: string): { [key: string]: any } {
 
     return result;
 }
+

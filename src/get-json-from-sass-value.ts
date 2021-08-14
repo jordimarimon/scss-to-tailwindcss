@@ -38,7 +38,7 @@ function mapToObject(map: sass.types.Map) {
 
         let transformedKey = stripOuter(key, '"');
 
-        if (transformedKey.includes('-')) {
+        if (transformedKey.indexOf('-') > 0) {
             transformedKey = camelize(transformedKey);
         }
 
