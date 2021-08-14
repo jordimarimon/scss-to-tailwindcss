@@ -1,3 +1,12 @@
+# [1.1.0](https://github.com/jordimarimon/scss-to-tailwindcss/compare/1.0.2...1.1.0) (2021-08-14)
+
+
+### Features
+
+* Add default configuration and utility mixins ([f7da195](https://github.com/jordimarimon/scss-to-tailwindcss/commit/f7da1955e504707cec012dda3f817d4178ebca33))
+
+
+
 ## [1.0.2](https://github.com/jordimarimon/scss-to-tailwindcss/compare/1.0.1...1.0.2) (2021-08-08)
 
 
