@@ -1,3 +1,12 @@
+# [1.2.0](https://github.com/jordimarimon/scss-to-tailwindcss/compare/1.1.1...1.2.0) (2021-08-14)
+
+
+### Features
+
+* Add escape SASS function ([17949ee](https://github.com/jordimarimon/scss-to-tailwindcss/commit/17949ee55a3ce75f2a4f43a7b25cd8646fb01cd4))
+
+
+
 ## [1.1.1](https://github.com/jordimarimon/scss-to-tailwindcss/compare/1.1.0...1.1.1) (2021-08-14)
 
 
