@@ -102,8 +102,8 @@
  *
  * https://www.w3.org/TR/CSS21/syndata.html#characters
  */
-@function escape($string) {
-  $result: $string;
+@function escape($value) {
+  $result: if(meta.type-of($value) != "string", "#{$value}", $value);
   $special-chars: ("/", ":", ".");
 
   @each $char in $special-chars {
