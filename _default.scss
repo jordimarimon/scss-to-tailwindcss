@@ -1119,7 +1119,7 @@ $maxWidth: (
   screen-md: map.get($screens, md),
   screen-lg: map.get($screens, lg),
   screen-xl: map.get($screens, xl),
-  screen-2xl: map.get($screens, 2xl),
+  screen-2xl: map.get($screens, "2xl"),
 );
 
 $minHeight: (
