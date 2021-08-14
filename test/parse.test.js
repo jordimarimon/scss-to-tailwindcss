@@ -8,10 +8,3 @@ test('basic configuration', async () => {
 
     expect(result).toEqual(expected);
 });
-
-test('default configuration', async () => {
-    const result = parse(join(__dirname, '..', '_default.scss'));
-    const expected = JSON.parse(readFileSync(join(__dirname, 'fixtures', 'default-expected.json'), 'utf8'));
-
-    expect(result).toEqual(expected);
-});
