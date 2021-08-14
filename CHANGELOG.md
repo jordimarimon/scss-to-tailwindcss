@@ -1,3 +1,13 @@
+## [1.1.1](https://github.com/jordimarimon/scss-to-tailwindcss/compare/1.1.0...1.1.1) (2021-08-14)
+
+
+### Bug Fixes
+
+* Can't pass modules as SASS function arguments ([fe5efff](https://github.com/jordimarimon/scss-to-tailwindcss/commit/fe5efff73fd7905006d71b08c3d7614ea3c41e53))
+* Default maxWidth property returns null in 'screen-2xl' ([cc882aa](https://github.com/jordimarimon/scss-to-tailwindcss/commit/cc882aa63e24bf89bbde7c390c8bf9eddaad29f4))
+
+
+
 # [1.1.0](https://github.com/jordimarimon/scss-to-tailwindcss/compare/1.0.2...1.1.0) (2021-08-14)
 
 
