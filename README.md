@@ -360,8 +360,9 @@ In your SASS main entry point add the following lines before any styles:
 
 @use "<path-to-your-config-file>/config";
 @use "~scss-to-tailwindcss/theme";
+@use "sass:meta";
 
-@include theme.set(config);
+@include theme.set(meta.module-variables(config));
 
 ```
 
