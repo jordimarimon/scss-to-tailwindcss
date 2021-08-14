@@ -91,7 +91,7 @@
   $result: ();
 
   @each $key, $value in $map {
-    $result: map.merge(("-#{$key}": -#{$value}), $result);
+    $result: map.merge($result, ("-#{$key}": -#{$value}));
   }
 
   @return $result;

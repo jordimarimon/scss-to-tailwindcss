@@ -12,7 +12,7 @@ $_config: meta.module-variables(default);
  * Merges the developer theme configuration with the default.
  */
 @mixin set($options) {
-  $_config: map.merge(meta.module-variables($options), $_config) !global;
+  $_config: map.merge($_config, $options) !global;
 }
 
 /**
