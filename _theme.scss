@@ -31,14 +31,18 @@ $_config: meta.module-variables(default);
     @if (map.has-key($result, $key)) {
       $result: map.get($result, $key);
     } @else {
-      // Sometimes the user writes the keys in SCSS as numbers
-      // and we get false negatives (key does really exist).
-      $parsed-key: utils.to-number($key);
+      $parsed-key: string.unquote($key);
 
       @if (map.has-key($result, $parsed-key)) {
         $result: map.get($result, $parsed-key);
       } @else {
-        @error "Property not found in configuration: #{$prop}";
+        $parsed-key: utils.to-number($key);
+
+        @if (map.has-key($result, $parsed-key)) {
+          $result: map.get($result, $parsed-key);
+        } @else {
+          @error "Property not found in configuration: #{$prop}";
+        }
       }
     }
   }

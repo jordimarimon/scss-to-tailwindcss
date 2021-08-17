@@ -1,5 +1,4 @@
 import { stripOuter } from './strip-outer';
-import { camelize } from './camelize';
 import * as sass from 'sass';
 
 /**
@@ -35,12 +34,7 @@ function mapToObject(map: sass.types.Map) {
 
     for (const index of Array.from({ length }).keys()) {
         const key = map.getKey(index).toString();
-
-        let transformedKey = stripOuter(key, '"');
-
-        if (transformedKey.indexOf('-') > 0) {
-            transformedKey = camelize(transformedKey);
-        }
+        const transformedKey = stripOuter(key, '"');
 
         data[transformedKey] = getJsonValueFromSassValue(map.getValue(index));
     }
