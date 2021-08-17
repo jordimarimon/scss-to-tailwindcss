@@ -19,8 +19,10 @@ theme configuration in SASS.
 
 Because your theme configuration is written in SASS, you can use all the power of it without any limitation.
 
-You still can use all the power of [tailwindcss](https://tailwindcss.com/) while keeping one source of truth for your
-theme configuration.
+You still can use all the power of [tailwindcss](https://tailwindcss.com/).
+
+**Note:** There is one caveat, if you need to define functions in your theme configuration, you would need to 
+define them in the `tailwind.config.js`.
 
 #### Especial thanks to the following libraries that I have used code from it:
 
@@ -39,9 +41,7 @@ theme configuration.
 You need to define your theme options in a SASS file. 
 
 The names of the SASS variables need to be the same as the names you would set in 
-the `tailwind.config.js` file. 
-
-You can use _kebab-case_ or _lowerCamelCase_.
+the `tailwind.config.js` file.
 
 The properties that need to extend the `tailwindcss` default theme, should be defined inside a SASS map named `$extend`.
 
@@ -116,7 +116,7 @@ $width: (
 //////////////////////// TYPOGRAPHY
 ///////////////////////////////////////////////////////////////////////////////
 
-$font-size: (
+$fontSize: (
   "xs": 0.75rem,
   "sm": 0.875rem,
   "base": 1rem,
@@ -128,7 +128,7 @@ $font-size: (
   "5xl": 3rem,
 );
 
-$font-weight: (
+$fontWeight: (
   "thin": 100,
   "extralight": 200,
   "light": 300,
@@ -140,7 +140,7 @@ $font-weight: (
   "black": 900,
 );
 
-$letter-spacing: (
+$letterSpacing: (
   "tighter": -0.05em,
   "tight": -0.025em,
   "normal": 0em,
@@ -184,11 +184,11 @@ $colors: (
 ///////////////////////////////////////////////////////////////////////////////
 
 $extend: (
-  grid-template-columns: (
+  gridTemplateColumns: (
     auto: repeat(auto-fill, minmax(var(--size), 1fr)),
   ),
 
-  grid-template-rows: (
+  gridTemplateRows: (
     auto: repeat(auto-fill, minmax(var(--size), 1fr)),
   ),
 );
