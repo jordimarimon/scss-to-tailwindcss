@@ -1,3 +1,13 @@
+## [1.2.1](https://github.com/jordimarimon/scss-to-tailwindcss/compare/1.2.0...1.2.1) (2021-08-17)
+
+
+### Bug Fixes
+
+* Don't camelize the keys ([31267e8](https://github.com/jordimarimon/scss-to-tailwindcss/commit/31267e89a302927b35b07915923f269fc4e89da0))
+* Force value to be a string in escape function ([fed1a25](https://github.com/jordimarimon/scss-to-tailwindcss/commit/fed1a2592a2a4dc9eaff211fdeb81c8962e1416b))
+
+
+
 # [1.2.0](https://github.com/jordimarimon/scss-to-tailwindcss/compare/1.1.1...1.2.0) (2021-08-14)
 
 
