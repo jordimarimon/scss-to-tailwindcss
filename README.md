@@ -5,7 +5,7 @@ This library converts SASS variables to JSON.
 You may be asking why this is needed?  
 
 One of the limitations of using SASS with [tailwindcss](https://tailwindcss.com/) is that you can't use SASS functions/mixins with
-your theme configuration. For example, the following won't compile:
+your theme configuration. For example, the following won't work:
 
 ```scss
 .alert {
@@ -22,7 +22,7 @@ Because your theme configuration is written in SASS, you can use all the power o
 You still can use all the power of [tailwindcss](https://tailwindcss.com/).
 
 **Note:** There is one caveat, if you need to define functions in your theme configuration, you would need to 
-define them in the `tailwind.config.js`.
+define them in the `tailwind.config.js`. In SASS, you can only define static variables. 
 
 #### Especial thanks to the following libraries that I have used code from it:
 
@@ -45,7 +45,7 @@ the `tailwind.config.js` file.
 
 The properties that need to extend the `tailwindcss` default theme, should be defined inside a SASS map named `$extend`.
 
-An exemple of a theme configuration:
+An example of a theme configuration:
 
 ```scss
 

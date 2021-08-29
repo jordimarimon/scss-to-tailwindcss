@@ -7,12 +7,27 @@
 @use "utils";
 
 $_config: meta.module-variables(default);
+$_functions: meta.module-functions(default);
 
 /**
  * Merges the developer theme configuration with the default.
  */
-@mixin set($options) {
+@mixin set($options: ()) {
   $_config: map.merge($_config, $options) !global;
+
+  // Some default options are dynamically generated as TailwindCSS does
+  @each $name, $func in $_functions {
+    @if (not map.has-key($options, $name)) {
+      $_config: map.merge($_config, ($name: meta.call($func, $_config))) !global;
+    }
+  }
+
+  // Deep merge the options that extend the default ones
+  @if (map.has-key($options, "extend")) {
+    @each $key, $value in map.get($options, "extend") {
+      $_config: map.deep-merge($_config, ($key: $value)) !global;
+    }
+  }
 }
 
 /**
