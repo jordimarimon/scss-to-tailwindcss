@@ -1,3 +1,12 @@
+## [1.2.2](https://github.com/jordimarimon/scss-to-tailwindcss/compare/1.2.1...1.2.2) (2021-08-29)
+
+
+### Bug Fixes
+
+* Make the default configuration dynamic ([1d5be61](https://github.com/jordimarimon/scss-to-tailwindcss/commit/1d5be61901422a17e677dcc31caae94422a374a2))
+
+
+
 ## [1.2.1](https://github.com/jordimarimon/scss-to-tailwindcss/compare/1.2.0...1.2.1) (2021-08-17)
 
 
