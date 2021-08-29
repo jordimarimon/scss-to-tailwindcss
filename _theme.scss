@@ -24,9 +24,7 @@ $_functions: meta.module-functions(default);
 
   // Deep merge the options that extend the default ones
   @if (map.has-key($options, "extend")) {
-    @each $key, $value in map.get($options, "extend") {
-      $_config: map.deep-merge($_config, ($key: $value)) !global;
-    }
+    $_config: map.deep-merge($_config, map.get($options, "extend")) !global;
   }
 }
 
