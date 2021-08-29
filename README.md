@@ -376,7 +376,7 @@ your theme configuration from SASS:
 @use "~scss-to-tailwindcss/color";
 
 .test-class {
-  font-size: theme.get("font-size.base");
+  font-size: theme.get("fontSize.base");
   color: theme.get("colors.white");
   
   // Now you can use all the power of SASS with tailwindcss!
