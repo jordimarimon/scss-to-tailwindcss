@@ -15,7 +15,3 @@
 #### Test
 
     npm run test
-
-#### Update changelog after a version update
-
-    npm run changelog
