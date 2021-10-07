@@ -1,6 +1,6 @@
 {
   "name": "scss-to-tailwindcss",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "author": "Jordi Marimon Palarea",
   "description": "Converts a SCSS configuration file to a TailwindCSS theme object",
   "license": "MIT",
